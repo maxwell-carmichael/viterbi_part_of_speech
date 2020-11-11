@@ -412,69 +412,10 @@ public class Sudi {
     }
 
     public static void main(String[] args) {
-        // hard coded
-        Sudi v = new Sudi();
-
-        Map<String, Double> startT = new HashMap<>();
-        startT.put("NP", 3.0);
-        startT.put("N", 7.0);
-        v.transitionPOSGraph.put(start, startT);
-
-        Map<String, Double> NPT = new HashMap<>();
-        NPT.put("V", 8.0);
-        NPT.put("CNJ", 2.0);
-        v.transitionPOSGraph.put("NP", NPT);
-
-        Map<String, Double> VT = new HashMap<>();
-        VT.put("NP", 4.0);
-        VT.put("CNJ", 2.0);
-        VT.put("N", 4.0);
-        v.transitionPOSGraph.put("V", VT);
-
-        Map<String, Double> CNJT = new HashMap<>();
-        CNJT.put("NP", 2.0);
-        CNJT.put("V", 4.0);
-        CNJT.put("N", 4.0);
-        v.transitionPOSGraph.put("CNJ", CNJT);
-
-        Map<String, Double> NT = new HashMap<>();
-        NT.put("CNJ", 2.0);
-        NT.put("V", 8.0);
-        v.transitionPOSGraph.put("N", NT);
-
-        Map<String, Double> chaseP = new HashMap<>();
-        chaseP.put("NP", 10.0);
-        v.observationGraph.put("chase", chaseP);
-
-        Map<String, Double> andP = new HashMap<>();
-        andP.put("CNJ", 10.0);
-        v.observationGraph.put("and", andP);
-
-        Map<String, Double> getP = new HashMap<>();
-        Map<String, Double> watchP = new HashMap<>();
-        Map<String, Double> catP = new HashMap<>();
-        Map<String, Double> dogP = new HashMap<>();
-
-        getP.put("V", 1.0);
-        chaseP.put("V", 3.0);
-        watchP.put("V", 6.0);
-        catP.put("N", 4.0);
-        dogP.put("N", 4.0);
-        watchP.put("N", 2.0);
-
-        v.observationGraph.put("get", getP);
-        v.observationGraph.put("watch", watchP);
-        v.observationGraph.put("cat", catP);
-        v.observationGraph.put("dog", dogP);
-
-//        System.out.println(Arrays.toString(v.dissect("get")));
-//        System.out.println(Arrays.toString(v.dissect("chase and dog watch cat")));
-//        System.out.println(Arrays.toString(v.dissect("dog watch dOgs and get chase and watch watch")));
-
         // create and train Sudi
-        v = new Sudi("texts/brown-train-sentences.txt", "texts/brown-train-tags.txt");
+        v = new Sudi("brown-train-sentences.txt", "brown-train-tags.txt");
         // see how Sudi did
-        v.printCorrectness("texts/brown-test-sentences.txt", "texts/brown-test-tags.txt");
+        v.printCorrectness("brown-test-sentences.txt", "brown-test-tags.txt");
         // allow user to test
         v.inputConsole();
     }
